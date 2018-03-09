@@ -29,6 +29,7 @@ def upload_file():
         return render_template('index.html')
     if request.method == 'POST':
         # check if the post request has the file part
+        print(request.files)
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)

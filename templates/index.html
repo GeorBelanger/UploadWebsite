@@ -16,12 +16,20 @@
 	<br>&emsp;PAS de géométrie, PAS d'écriture à la main
 	<br><br>&emsp;2. Téléverse ta photo ici
 
-
+	<!--
 	<form id="pictureForm" method=post enctype=multipart/form-data onsubmit="sendLabel()">
 	<p><input type=file name=file>
+	-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<form id="pictureForm" method="post" enctype="multipart/form-data" runat="server" onsubmit="sendLabel()">
+  	<input type="file" id="file" name="file"/>
+  	<img id="blah" src="#" alt="your image" />
+	
+
+
 	<input type='hidden' name='labelField' id='labelField' name='id' value='' />
 	<br><br>&emsp;3. Fais la transcription écrite de la photo ci-dessous et clique sur Envoyer
-	<br>&emsp;Tu peux participer plusiers fois! </h3>
+	<br>&emsp;Tu peux participer plusieurs fois! </h3>
 	<div id="answer"></div>
 	<input type=submit value=Envoyer>
 	</form>
@@ -52,6 +60,24 @@
   function sendLabel() {
   	document.getElementById('labelField').value=me.getLatex()}
 
+</script>
+
+<script type ="text/javascript">
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        
+	        reader.onload = function (e) {
+	            $('#blah').attr('src', e.target.result);
+	        }
+	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	$("#file").change(function(){
+	    readURL(this);
+	});
 </script>
 
 </html>

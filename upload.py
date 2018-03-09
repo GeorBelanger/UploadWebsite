@@ -29,19 +29,11 @@ def upload_file():
         return render_template('index.html')
     if request.method == 'POST':
         # check if the post request has the file part
-        print(request.files)
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
         file = request.files['file']
         label = request.form['labelField']
-        print(label)
-
-        unique_filename = str(uuid.uuid4())
-        print(unique_filename)
-        text_file = open("Output.txt", 'a')
-        text_file.write("\n" + unique_filename + " " + label)
-        text_file.close()
 
         # if user does not select file, browser also
         # submit an empty part without filename
@@ -50,13 +42,23 @@ def upload_file():
             return redirect(request.url)
 
         if label == '':
-            flash("Oups! Vous devez faire la transcription écrit de l'image aussi!")
+            flash("Oups! Vous devez faire la transcription écrite de l'image!")
             return redirect(request.url)
+
+        unique_filename = str(uuid.uuid4())
+
+        text_file = open("Output.txt", 'a')
+        text_file.write("\n" + unique_filename + " " + label)
+        text_file.close()
 
         if file:
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],
                       unique_filename))
-            flash("Merci pour nous aider! Vous pouvez téléverser d'autres photos :)")
+            num_images = len([name for name in os.listdir(app.config['UPLOAD_FOLDER'])])
+
+            flash("Merci pour nous aider! "+str(num_images)+" photos ont été téléversées")
+            flash("Une fois les 5 000 photos atteintes, l'équipe d'Erudite a préparé une belle surprise pour les participant-es!")
+            flash("\n"+"Vous pouvez téléverser d'autres photos :)")
             return redirect(url_for('upload_file'))
 
 

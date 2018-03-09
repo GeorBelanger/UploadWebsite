@@ -10,32 +10,23 @@
 	<h1> Le défi 5 000</h1>
 	</center>
 	<left>
-	<h3>Aide Erudite AI à collecter 5 000 photos de problèmes mathématiques pour améliorer son algorithme de reconnaissance d'image ! 
+	<h3>Aide Erudite AI à collecter 5 000 photos de problèmes mathématiques pour améliorer son algorithme de reconnaissance d'image! 
 	<br><br>&emsp;1. Prends une photo d'un problème de maths (trouvé en ligne, dans un manuel...):
 	<br>&emsp;Du texte, des équations, de l'algèbre,...
 	<br>&emsp;PAS de géométrie, PAS d'écriture à la main
 	<br><br>&emsp;2. Téléverse ta photo ici
 
-	<!--
-	<form id="pictureForm" method=post enctype=multipart/form-data onsubmit="sendLabel()">
-	<p><input type=file name=file>
-	-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<form id="pictureForm" method="post" enctype="multipart/form-data" runat="server" onsubmit="sendLabel()">
   	<input type="file" id="file" name="file"/>
-  	<img id="blah" src="#" alt="your image" />
-	
-
+  	<img id="blah" src="#" alt="aperçu" style='height:100%; width: 100%; max-height: 150px; object-fit: contain'/>
 
 	<input type='hidden' name='labelField' id='labelField' name='id' value='' />
 	<br><br>&emsp;3. Fais la transcription écrite de la photo ci-dessous et clique sur Envoyer
 	<br>&emsp;Tu peux participer plusieurs fois! </h3>
 	<div id="answer"></div>
-	<input type=submit value=Envoyer>
+	<input type=submit value=Envoyer style="height:80px; width:100px">
 	</form>
-  	
-    <h3>Merci!
-    <br>Une fois les 5 000 photos atteintes, l'équipe d'Erudite a préparé une belle surprise pour les participant-es! </h3>
 	</left>
 {% with messages = get_flashed_messages() %}
 	{% if messages %}
